@@ -6,8 +6,8 @@ from modules.collector import Collector
 from modules import validation, transformation, report
 from utils import config
 import global_vars
-from tqdm import tqdm  # type: ignore # Biblioteca para barra de progresso
-from termcolor import colored  # Biblioteca para colorir texto no terminal
+from tqdm import tqdm  # type: ignore 
+from termcolor import colored  
 
 async def run(start_time):
     collector = Collector(max_connections=50)
@@ -29,7 +29,6 @@ async def run(start_time):
 
     images = await collector.collect_images(urls)
     
-    # Usando tqdm para mostrar a barra de progresso
     for image_binary, url in tqdm(zip(images, urls), total=len(urls), desc='Coletando imagens', unit='url'):
         tqdm.write(f"{colored(url, 'blue')}")
         if image_binary and isinstance(image_binary, bytes):

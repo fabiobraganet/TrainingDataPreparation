@@ -1,5 +1,5 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suprimir logs do TensorFlow
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  
 import logging
 import json
 import shutil
@@ -14,10 +14,9 @@ from utils import config
 from modules import report
 from concurrent.futures import ThreadPoolExecutor
 import global_vars
-from tqdm import tqdm  # type: ignore # Biblioteca para barra de progresso
-from termcolor import colored  # Biblioteca para colorir texto no terminal
+from tqdm import tqdm  # type: ignore 
+from termcolor import colored  
 
-# Carregar o modelo MobileNetV2 pré-treinado
 model = MobileNetV2(weights='imagenet')
 
 def classify_image(img):

@@ -5,7 +5,7 @@ import logging
 class Collector:
     def __init__(self, max_connections):
         self.sem = asyncio.Semaphore(max_connections)
-        self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=120))  # Inicializando a sessão no construtor
+        self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=120))  
 
     async def fetch_image(self, url):
         loop = asyncio.get_running_loop()
@@ -38,5 +38,3 @@ class Collector:
 
     async def close(self):
         await self.session.close()
-
-# Certifique-se de fechar a sessão quando ela não for mais necessária
