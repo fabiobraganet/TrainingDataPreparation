@@ -1,7 +1,8 @@
 # Training Data Preparation
 
 ![Build Status](https://github.com/fabiobraganet/TrainingDataPreparation/actions/workflows/ci.yml/badge.svg)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![Deploy Status](https://github.com/fabiobraganet/TrainingDataPreparation/actions/workflows/cd.yml/badge.svg)
+![License](https://img.shields.io/badge/license-Unlicense-blue)
 ![Python](https://img.shields.io/badge/Python-3.9-blue)
 
 ---
@@ -76,21 +77,21 @@
 ### Passos
 
 1. **Clone o Repositório:**
-   """
+   ```
    git clone https://github.com/seu-usuario/TrainingDataPreparation.git
    cd TrainingDataPreparation
-   """
+   ```
 
 2. **Crie um Ambiente Virtual:**
-   """
+   ```
    python -m venv venv
    source venv/bin/activate  # No Windows use `venv\Scripts\activate`
-   """
+   ```
 
 3. **Instale as Dependências:**
-   """
+   ```
    pip install -r requirements.txt
-   """
+   ```
 
 ---
 
@@ -108,9 +109,9 @@
 ### Comandos Básicos
 
 1. **Executar a Preparação de Dados:**
-   """
+   ```
    python src/main.py --jsonl_path=data/images.jsonl --output_path=data/output.jsonl
-   """
+   ```
 
 ---
 
@@ -120,7 +121,7 @@
 
 - **JSON:**
 
-  """
+  ```
   [
       {
           "md5": "d41d8cd98f00b204e9800998ecf8427e",
@@ -137,7 +138,7 @@
           ]
       }
   ]
-  """
+  ```
 
 ---
 
@@ -156,19 +157,19 @@ Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 1. Faça um fork do projeto.
 2. Crie uma nova branch para sua feature ou correção: 
 
-    """
+    ```
     git checkout -b minha-feature
-    """
+    ```
 3. Commit suas mudanças: 
 
-    """
+    ```
     git commit -m 'Adiciona minha nova feature'
-    """
+    ```
 4. Faça push para a branch: 
 
-    """
+    ```
     git push origin minha-feature
-    """
+    ```
 5. Envie um pull request.
 
 ---
@@ -230,6 +231,7 @@ Com a capacidade de processar grandes volumes de dados de imagem, o Training Dat
 **TrainingDataPreparation** é um projeto Python para a preparação de dados de treinamento, coletando, validando, transformando e classificando imagens de moda. Utiliza TensorFlow para classificação de imagens e armazena os resultados em formato JSON. O projeto é organizado em componentes modulares, seguindo princípios de SOLID e Clean Code para garantir manutenibilidade e escalabilidade.
 
 <img src="./docs/TrainingDataPreparation.svg" alt="Desenho básico" width="100%">
+(imagem pendente de ajustes)
 
 ### Explicação do UML
 
@@ -406,9 +408,9 @@ O Training Data Preparation é uma ferramenta projetada para facilitar a prepara
 
 1. Execute a preparação de dados com o comando:
 
-   """
+   ```
    python src/main.py --jsonl_path=data/images.jsonl --output_path=data/output.jsonl
-   """
+   ```
 
 ### Armazenamento de Dados
 
@@ -420,7 +422,7 @@ O Training Data Preparation é uma ferramenta projetada para facilitar a prepara
 
 1. Arquivo Json
 
-    """
+    ```
     [
         {
             "md5": "d41d8cd98f00b204e9800998ecf8427e",
@@ -430,7 +432,7 @@ O Training Data Preparation é uma ferramenta projetada para facilitar a prepara
             ]
         }
     ]
-    """
+    ```
 
 ---
 
@@ -439,18 +441,6 @@ O Training Data Preparation é uma ferramenta projetada para facilitar a prepara
 - Verifique o formato dos dados.
 - Utilize um ambiente virtual para isolar as dependências do projeto.
 - Respeite as leis de direitos autorais e privacidade ao baixar e processar imagens.
-
----
-
-### Suporte e Contribuição
-
-Para suporte adicional, abra uma issue no repositório ou entre em contato com os mantenedores.
-
----
-
-## 📄 Licença
-
-Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
