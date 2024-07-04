@@ -19,7 +19,6 @@ async def main():
 
     await classification.run(start_time)
 
-    # Finalizar relatórios no final da execução principal
     report.finalize_report("resize-images", start_time)
     report.finalize_report("classify-images", start_time)
 
