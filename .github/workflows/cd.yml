@@ -6,7 +6,7 @@ on:
       - 'v*.*.*'
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,16 +24,12 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
-      - name: Create release
-        id: create_release
+      - name: Create Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-
-      - name: Set short SHA
-        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
