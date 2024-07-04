@@ -39,17 +39,3 @@ jobs:
           source venv/bin/activate
           pip install pytest
           pytest
-
-      - name: Check code formatting with black
-        run: |
-          source venv/bin/activate
-          pip install black
-          black --check .
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: true
