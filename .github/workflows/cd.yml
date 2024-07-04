@@ -2,61 +2,38 @@ name: CD
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
+  release:
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
 
-    - name: Create executable with PyInstaller
-      run: |
-        pip install pyinstaller
-        pyinstaller --onefile main.py
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
 
-    - name: Archive the executable
-      uses: actions/upload-artifact@v2
-      with:
-        name: training-data-preparation
-        path: dist/main
-
-    - name: Get the short commit SHA
-      id: vars
-      run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
-
-    - name: Deploy to GitHub Releases
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v1.0.0-${{ steps.vars.outputs.short_sha }}
-        release_name: Release v1.0.0-${{ steps.vars.outputs.short_sha }}
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/main
-        asset_name: training-data-preparation
-        asset_content_type: application/octet-stream
+      - name: Set short SHA
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
